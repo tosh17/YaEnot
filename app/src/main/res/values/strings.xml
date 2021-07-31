@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">YaEnot</string>
+    <string name="prifile_menu_notification">Уведомления</string>
+    <string name="prifile_menu_exit">Выйти</string>
+    <string name="prifile_menu_payment">Оплата</string>
+    <string name="prifile_menu_support">Поддержка</string>
+    <string name="prifile_menu_questions">Вопрос ответы</string>
 </resources>

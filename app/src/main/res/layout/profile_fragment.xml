@@ -5,21 +5,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/profile_body" />
+    <include
+        android:id="@+id/body"
+        layout="@layout/profile_body" />
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/bottomAppBar"
-        style="@style/Widget.MaterialComponents.BottomAppBar.Colored"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom">
+        android:layout_height="82dp"
+        android:layout_gravity="bottom"
+        app:backgroundTint="#323648">
 
+        <include layout="@layout/profile_bottom_menu" />
     </com.google.android.material.bottomappbar.BottomAppBar>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:backgroundTint="#76B8FF"
         app:layout_anchor="@id/bottomAppBar"
-        app:srcCompat="@android:drawable/arrow_up_float" />
+        app:srcCompat="@drawable/ic_open_book"
+        app:tint="@null" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
