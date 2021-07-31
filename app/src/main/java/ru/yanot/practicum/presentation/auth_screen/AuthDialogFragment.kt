@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.DialogFragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.button.MaterialButton
@@ -22,7 +23,7 @@ class AuthDialogFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val button = view.findViewById<MaterialButton>(R.id.materialButton)
+        val button = view.findViewById<AppCompatButton>(R.id.materialButton)
         button.setOnClickListener { findNavController().navigate(R.id.action_authDialogFragment_to_profileFragment) }
     }
 }
