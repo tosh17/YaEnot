@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">YaEnot</string>
+    <string name="select_course_text">Выбрать курс</string>
+    <string name="next">Продолжить обучение</string>
+    <string name="onboarding_title_1">Изучайте и осваивайте новые специальности</string>
+    <string name="onboarding_title_2">Отслеживайте прогресс и получайте сертификаты</string>
+    <string name="onboarding_title_3">Обучайтесь с различных устройств</string>
+    <string name="onboarding_subtitle_1">Учитесь программированию, дизайну и другим специальностям.</string>
+    <string name="onboarding_subtitle_2">Cледите за своим ежедневным прогрессом и по окончании получайте сертификат.</string>
+    <string name="onboarding_subtitle_3">Обучайтесь где угодно и следите за своим прогрессом на всех платформах.</string>
     <string name="hint_search">Чему бы вы хотели научиться?</string>
 </resources>
