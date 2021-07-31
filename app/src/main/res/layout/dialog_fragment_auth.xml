@@ -38,6 +38,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/email_input_layout"
         android:layout_width="0dp"
+        android:background="@drawable/background_image_shape_auth"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_main_auth_dialog"
         android:layout_marginTop="2dp"
@@ -45,6 +46,7 @@
         app:boxCornerRadiusBottomEnd="@dimen/box_corner_radius_edit_text"
         app:boxCornerRadiusBottomStart="@dimen/box_corner_radius_edit_text"
         app:boxCornerRadiusTopEnd="@dimen/box_corner_radius_edit_text"
+        app:boxStrokeWidth="0dp"
         app:boxCornerRadiusTopStart="@dimen/box_corner_radius_edit_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,8 +54,9 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/gray_light" />
+            android:background="@drawable/background_image_shape_auth"
+
+            android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
@@ -69,6 +72,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout"
         android:layout_width="0dp"
+        app:boxStrokeWidth="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_main_auth_dialog"
         android:layout_marginTop="2dp"
@@ -83,8 +87,9 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_height="wrap_content"
-            android:background="@color/gray_light"
+            android:background="@drawable/background_image_shape_auth"
             android:drawableEnd="@drawable/ic_visible_icon"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -101,11 +106,11 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/materialButton"
-        style="@style/Button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_main_auth_dialog"
         android:text="@string/log_in"
+        android:theme="@style/Button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
