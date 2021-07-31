@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import ru.yanot.practicum.R
+import ru.yanot.practicum.databinding.ProfessionsListFragmentBinding
 
 class ProfessionsListFragment : Fragment() {
 
@@ -14,19 +15,28 @@ class ProfessionsListFragment : Fragment() {
         fun newInstance() = ProfessionsListFragment()
     }
 
-    private lateinit var viewModel: ProfessionsViewModel
+    private val viewModel: ProfessionsViewModel by lazy {
+        ViewModelProvider(this).get(ProfessionsViewModel::class.java)
+    }
+
+    private lateinit var binding: ProfessionsListFragmentBinding
+    private lateinit var adapter: ProfessionsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.professions_list_fragment, container, false)
+        val view = inflater.inflate(R.layout.professions_list_fragment, container, false)
+        binding = ProfessionsListFragmentBinding.bind(view)
+        setupAdapter()
+        return view
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(ProfessionsViewModel::class.java)
-        // TODO: Use the ViewModel
+    private fun setupAdapter() {
+        adapter = ProfessionsAdapter()
+        adapter.setItems(viewModel.getData())
+
+        binding.itemsView.adapter = adapter
     }
 
 }

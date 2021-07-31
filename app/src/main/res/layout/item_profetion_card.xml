@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/bg_profession_card">
+    android:background="@drawable/bg_profession_card"
+    android:layout_marginBottom="12dp">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageProfessionView"
@@ -35,6 +36,7 @@
         style="@style/Footnote.Footnote_Reg_14sp"
         android:layout_marginTop="6dp"
         android:drawableStart="@drawable/ic_calendar"
+        android:drawablePadding="6dp"
         tools:text="10 месяцев"/>
 
 
@@ -48,6 +50,7 @@
         android:layout_marginStart="10dp"
         android:paddingBottom="20dp"
         android:drawableStart="@drawable/ic_clock"
+        android:drawablePadding="6dp"
         tools:text="100 часов"/>
 
 

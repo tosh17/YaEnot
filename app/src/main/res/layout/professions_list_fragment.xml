@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".presentation.professions.ProfessionsListFragment">
+    tools:context=".presentation.professions.ProfessionsListFragment"
+    android:background="@color/gray">
     
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/searchContainer"
@@ -38,6 +39,7 @@
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/itemsView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
