@@ -19,4 +19,5 @@
     <color name="additional_green">#86CA82</color>
     <color name="additional_red">#EC5149</color>
     <color name="effects_bg">#323648</color>
+    <color name="transparent">#00FFFFFF</color>
 </resources>
