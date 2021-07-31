@@ -56,6 +56,10 @@ class OnboardingFragment : Fragment(R.layout.onboarding_fragment) {
         binding.continueBtn.setOnClickListener {
             findNavController().navigate(R.id.action_onboardingFragment_to_professionsListFragment)
         }
+
+        binding.selectCourseBtn.setOnClickListener {
+           findNavController().navigate(R.id.action_onboardingFragment_to_authDialogFragment)
+        }
     }
 
     private fun initViewPager(){
