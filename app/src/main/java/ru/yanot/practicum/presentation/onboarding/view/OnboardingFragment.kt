@@ -3,6 +3,7 @@ package ru.yanot.practicum.presentation.onboarding.view
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.tabs.TabLayoutMediator
@@ -45,14 +46,15 @@ class OnboardingFragment : Fragment(R.layout.onboarding_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         initViewPager()
+
+        initClickListener()
 
     }
 
     private fun initClickListener(){
         binding.continueBtn.setOnClickListener {
-
+            findNavController().navigate(R.id.action_onboardingFragment_to_professionsListFragment)
         }
     }
 
