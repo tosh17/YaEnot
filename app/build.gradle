@@ -63,6 +63,9 @@ dependencies {
 
     //View Binding
     implementation "com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.4.4"
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
 
     kapt "com.google.dagger:dagger-compiler:$hilt_version"
     implementation "com.google.dagger:hilt-android:$hilt_version"
