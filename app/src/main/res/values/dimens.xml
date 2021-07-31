@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_end_cancel_icon_auth_dialog">20dp</dimen>
+    <dimen name="margin_main_auth_dialog">16dp</dimen>
+    <dimen name="box_corner_radius_edit_text">8dp</dimen>
+    <dimen name="corner_radius_icon_auth">8dp</dimen>
+</resources>
