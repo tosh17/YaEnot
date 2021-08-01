@@ -59,8 +59,8 @@ class ProfessionsAdapter : RecyclerView.Adapter<ProfessionsAdapter.ViewHolder>()
     class FirstItemOffsetDecoration : RecyclerView.ItemDecoration() {
 
         override fun getItemOffsets(outRect: Rect, itemPosition: Int, parent: RecyclerView) {
-            if (itemPosition == 0) outRect.top = 20.dp.toInt()
-            outRect.bottom = 12.dp.toInt()
+            if (itemPosition == 0) outRect.top = parent.context.resources.getDimension(R.dimen.offset_top_fist_profession_card).toInt()
+            outRect.bottom = parent.context.resources.getDimension(R.dimen.offset_bottom_fist_profession_card).toInt()
         }
 
         override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
