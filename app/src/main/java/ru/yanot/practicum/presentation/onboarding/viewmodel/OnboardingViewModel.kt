@@ -6,13 +6,15 @@ import ru.yanot.practicum.data.SharedPreferenceManager
 import javax.inject.Inject
 
 @HiltViewModel
-class OnboardingViewModel @Inject constructor(private val sharedPreferenceManager: SharedPreferenceManager) : BaseViewModel() {
+class OnboardingViewModel @Inject constructor(
+    private val sharedPreferenceManager: SharedPreferenceManager) :
+    BaseViewModel() {
 
     fun setOnboadingSeen() {
         sharedPreferenceManager.setOnboadingSeen()
     }
 
-    fun isOnboardingSeen(): Boolean{
+    fun isOnboardingSeen(): Boolean {
         return sharedPreferenceManager.isOnboadingSeen()
     }
 }

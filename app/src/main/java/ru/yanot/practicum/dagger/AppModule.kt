@@ -15,5 +15,6 @@ abstract class AppModule {
 
     @Singleton
     @Binds
-    abstract fun bindSharedPreferenceManager(sharedPreferenceManagerImpl: SharedPreferenceManagerImpl): SharedPreferenceManager
+    abstract fun bindSharedPreferenceManager(
+        sharedPreferenceManagerImpl: SharedPreferenceManagerImpl): SharedPreferenceManager
 }

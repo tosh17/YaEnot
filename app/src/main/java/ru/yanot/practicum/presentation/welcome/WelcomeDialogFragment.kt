@@ -10,7 +10,7 @@ import ru.yanot.practicum.utils.getColor
 import ru.yanot.practicum.utils.getString
 import ru.yanot.practicum.utils.loadText
 
-class WelcomeDialogFragment: DialogFragment(R.layout.welcome_dealog_fragment) {
+class WelcomeDialogFragment : DialogFragment(R.layout.welcome_dealog_fragment) {
 
     private val binding: WelcomeDealogFragmentBinding by viewBinding(WelcomeDealogFragmentBinding::bind)
 
@@ -23,7 +23,7 @@ class WelcomeDialogFragment: DialogFragment(R.layout.welcome_dealog_fragment) {
         initClickListener()
     }
 
-    private fun initClickListener(){
+    private fun initClickListener() {
         with(binding) {
             closeBtn.setOnClickListener {
                 dismiss()
@@ -33,17 +33,18 @@ class WelcomeDialogFragment: DialogFragment(R.layout.welcome_dealog_fragment) {
         }
     }
 
-    private fun highlightText(){
+    private fun highlightText() {
         val userAgreement = R.string.user_agreement.getString(requireContext())
         val userAgreementActionOne = R.string.user_agreement_action_one.getString(requireContext())
         val userAgreementActionTwo = R.string.user_agreement_action_two.getString(requireContext())
 
-        with(binding){
-            agreementTextView.text = String.format(userAgreement, userAgreementActionOne,userAgreementActionTwo)
+        with(binding) {
+            agreementTextView.text =
+                String.format(userAgreement, userAgreementActionOne, userAgreementActionTwo)
             agreementTextView.loadText(
-                from = String.format(userAgreement, userAgreementActionOne,userAgreementActionTwo)
+                from = String.format(userAgreement, userAgreementActionOne, userAgreementActionTwo)
                     .indexOf(userAgreementActionOne),
-                to = String.format(userAgreement, userAgreementActionOne,userAgreementActionTwo)
+                to = String.format(userAgreement, userAgreementActionOne, userAgreementActionTwo)
                     .indexOf(userAgreementActionOne)
                         + String.format(userAgreementActionOne).length,
                 colorInt = R.color.primary_default.getColor(requireContext()),
@@ -54,7 +55,7 @@ class WelcomeDialogFragment: DialogFragment(R.layout.welcome_dealog_fragment) {
             agreementTextView.loadText(
                 from = String.format(userAgreement, userAgreementActionOne, userAgreementActionTwo)
                     .indexOf(userAgreementActionTwo),
-                to = String.format(userAgreement, userAgreementActionOne,userAgreementActionTwo)
+                to = String.format(userAgreement, userAgreementActionOne, userAgreementActionTwo)
                     .indexOf(userAgreementActionTwo)
                         + String.format(userAgreementActionTwo).length,
                 colorInt = R.color.primary_default.getColor(requireContext()),
