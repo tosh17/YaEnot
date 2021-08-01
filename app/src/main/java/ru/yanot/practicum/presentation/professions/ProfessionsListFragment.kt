@@ -31,5 +31,6 @@ class ProfessionsListFragment : Fragment(R.layout.professions_list_fragment) {
         adapter = ProfessionsAdapter()
         adapter.setItems(viewModel.getData())
         binding.itemsView.adapter = adapter
+        binding.itemsView.addItemDecoration(ProfessionsAdapter.FirstItemOffsetDecoration(), 0)
     }
 }

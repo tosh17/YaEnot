@@ -1,7 +1,7 @@
 package ru.yanot.practicum.presentation.professions
 
 import android.annotation.SuppressLint
-import android.util.Log
+import android.graphics.Rect
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.RoundedCornersTransformation
 import ru.yanot.practicum.R
-import ru.yanot.practicum.databinding.ItemProfetionCardBinding
+import ru.yanot.practicum.databinding.ItemProfessionCardBinding
 
 class ProfessionsAdapter : RecyclerView.Adapter<ProfessionsAdapter.ViewHolder>() {
 
@@ -24,9 +24,9 @@ class ProfessionsAdapter : RecyclerView.Adapter<ProfessionsAdapter.ViewHolder>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_profetion_card, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_profession_card, parent, false)
 
-        val binding = ItemProfetionCardBinding.bind(view)
+        val binding = ItemProfessionCardBinding.bind(view)
         return ViewHolder(binding)
     }
 
@@ -50,5 +50,18 @@ class ProfessionsAdapter : RecyclerView.Adapter<ProfessionsAdapter.ViewHolder>()
 
     override fun getItemCount(): Int = items.size
 
-    class ViewHolder(val binding: ItemProfetionCardBinding) : RecyclerView.ViewHolder(binding.root)
+    class ViewHolder(val binding: ItemProfessionCardBinding) : RecyclerView.ViewHolder(binding.root)
+
+    class FirstItemOffsetDecoration : RecyclerView.ItemDecoration() {
+
+        override fun getItemOffsets(outRect: Rect, itemPosition: Int, parent: RecyclerView) {
+            if (itemPosition == 0) outRect.top = 20.dp.toInt()
+            outRect.bottom = 12.dp.toInt()
+        }
+
+        override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
+            if (parent.getChildAdapterPosition(view) == 0) outRect.top = 20.dp.toInt()
+            outRect.bottom = 12.dp.toInt()
+        }
+    }
 }
