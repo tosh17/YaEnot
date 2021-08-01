@@ -10,8 +10,8 @@
     <string name="password">Пароль</string>
     <string name="forger_password">Забыли пароль?</string>
     <string name="or">Или</string>
-    <string name="you_havent_acc_str">У вас нет аккаунта?</string>
-    <string name="registr">Зарегистрироваться</string>
+    <string name="you_havent_acc_str">У вас нет аккаунта? %1$s</string>
+    <string name="sign_in">Зарегистрироваться</string>
     <string name="app_title">Яндекс Практикум</string>
     <string name="select_course_text">Выбрать курс</string>
     <string name="next">Продолжить обучение</string>

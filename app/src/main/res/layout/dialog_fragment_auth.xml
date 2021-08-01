@@ -2,6 +2,7 @@
 
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_alert_dialog">
@@ -155,6 +156,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
             android:layout_marginStart="@dimen/margin_main_auth_dialog"
             android:layout_marginTop="20dp"
             android:background="@drawable/background_image_shape_auth"
@@ -185,6 +187,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="@dimen/margin_main_auth_dialog"
             android:background="@drawable/background_image_shape_auth"
@@ -199,28 +202,17 @@
             app:layout_constraintTop_toBottomOf="@+id/or_text_view" />
 
         <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="53dp"
-            android:layout_marginTop="30dp"
-            android:paddingEnd="20dp"
-            android:paddingBottom="30dp"
-            android:text="@string/you_havent_acc_str"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/facebook_icon" />
-
-        <TextView
+            android:id="@+id/sign_in_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:layout_marginEnd="53dp"
             android:paddingBottom="30dp"
-            android:text="@string/registr"
-            android:textColor="@color/primary_default"
+            android:text="@{@string/you_havent_acc_str(@string/sign_in)}"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView5"
-            app:layout_constraintTop_toBottomOf="@+id/facebook_icon" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/facebook_icon"
+            tools:text="У вас нет аккаунта? Зарегистрироваться" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>
