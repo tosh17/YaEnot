@@ -12,9 +12,18 @@ class OnboardingViewModel @Inject constructor(
     BaseViewModel() {
 
     private val _isLastPage = MutableStateFlow(false)
-    val isLastPage = _isLastPage
+
     private val _isSwipeStarted = MutableStateFlow(false)
-    val isSwipeStarted = _isSwipeStarted
+
+    fun setLastPageFlag(isLastPage: Boolean){
+        _isLastPage.value = isLastPage
+    }
+
+    fun canFinishOnboarding() = _isLastPage.value && _isSwipeStarted.value
+
+    fun setSwipeStartedFlag(isSwipeStarted: Boolean){
+        _isSwipeStarted.value = isSwipeStarted
+    }
 
     fun setOnboadingSeen() {
         sharedPreferenceManager.setOnboadingSeen()

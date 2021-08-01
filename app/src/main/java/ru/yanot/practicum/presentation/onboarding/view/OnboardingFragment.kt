@@ -77,12 +77,10 @@ class OnboardingFragment : Fragment(R.layout.onboarding_fragment) {
             viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageScrollStateChanged(state: Int) {
                     when (state) {
-                        ViewPager2.SCROLL_STATE_DRAGGING -> viewModel.isSwipeStarted.value = true
-                        ViewPager2.SCROLL_STATE_SETTLING -> viewModel.isSwipeStarted.value = false
+                        ViewPager2.SCROLL_STATE_DRAGGING -> viewModel.setSwipeStartedFlag(true)
+                        ViewPager2.SCROLL_STATE_SETTLING -> viewModel.setSwipeStartedFlag(false)
                         ViewPager2.SCROLL_STATE_IDLE ->
-                            if (viewModel.isSwipeStarted.value && viewModel.isLastPage.value) {
-                            finishOnboarding()
-                        }
+                            if (viewModel.canFinishOnboarding()) finishOnboarding()
                     }
                 }
 
@@ -91,7 +89,7 @@ class OnboardingFragment : Fragment(R.layout.onboarding_fragment) {
                     positionOffset: Float,
                     positionOffsetPixels: Int
                 ) {
-                    viewModel.isLastPage.value = position == onboardingAdapter.itemCount.minus(1)
+                    viewModel.setLastPageFlag(position == onboardingAdapter.itemCount.minus(1))
                 }
             })
         }
