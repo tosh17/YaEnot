@@ -34,4 +34,5 @@
     <string name="continue_text">Продолжить</string>
     <string name="welcome">Добро пожаловать</string>
     <string name="example_text_for_test">Вас ждет бесплатный курс по основам HTML, CSS, JS. Из него вы поймете, чем занимается web-разработчик, и насколько вам подходит профессия web-разработчик.</string>
+    <string name="not_empty_field">Поле не может быть пустым</string>
 </resources>
