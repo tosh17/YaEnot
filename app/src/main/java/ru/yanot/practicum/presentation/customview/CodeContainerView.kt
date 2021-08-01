@@ -6,6 +6,7 @@ import android.util.AttributeSet
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import ru.yanot.practicum.R
 import ru.yanot.practicum.utils.PrismHighlighter
 
 class CodeContainerView @JvmOverloads constructor(
@@ -25,6 +26,7 @@ class CodeContainerView @JvmOverloads constructor(
         webChromeClient = WebChromeClient()
         webViewClient = WebViewClient()
 
+        setBackgroundColor(context.getColor(R.color.secondary_light))
         loadDataWithBaseURL(
             ANDROID_ASSETS_PATH,
             PrismHighlighter.highlight(sourceCode, language, showLineNumbers),

@@ -5,6 +5,7 @@ https://prismjs.com/download.html#themes=prism-tomorrow&languages=markup+css+cli
  * Based on https://github.com/chriskempson/tomorrow-theme
  * @author Rose Pritchard
  */
+
 code[class*="language-"],
 pre[class*="language-"] {
 	color: #ccc;
@@ -38,7 +39,7 @@ pre[class*="language-"] {
 
 :not(pre) > code[class*="language-"],
 pre[class*="language-"] {
-	background: #2d2d2d;
+	background: #EAF3FE;
 }
 
 /* Inline code */
@@ -121,4 +122,3 @@ pre[class*="language-"] {
 .token.inserted {
 	color: green;
 }
-
