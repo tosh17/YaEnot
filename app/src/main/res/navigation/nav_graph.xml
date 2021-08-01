@@ -33,4 +33,8 @@
         android:id="@+id/profileFragment"
         android:name="ru.yanot.practicum.presentation.profile.ProfileFragment"
         android:label="ProfileFragment" />
+    <dialog
+        android:id="@+id/welcomeDialogFragment"
+        android:name="ru.yanot.practicum.presentation.welcome.WelcomeDialogFragment"
+        android:label="WelcomeDialogFragment" />
 </navigation>

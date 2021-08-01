@@ -11,7 +11,6 @@ import android.graphics.drawable.ColorDrawable
 import android.graphics.Color
 import android.view.Window
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.button.MaterialButton
 import ru.yanot.practicum.R
 
 class AuthDialogFragment : DialogFragment() {
@@ -32,7 +31,8 @@ class AuthDialogFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val button = view.findViewById<MaterialButton>(R.id.log_in_btn)
-        button.setOnClickListener { findNavController().navigate(R.id.action_authDialogFragment_to_profileFragment) }
+        val button = view.findViewById<AppCompatButton>(R.id.materialButton)
+        button.setOnClickListener {
+            findNavController().navigate(R.id.action_authDialogFragment_to_profileFragment) }
     }
 }
