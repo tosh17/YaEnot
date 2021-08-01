@@ -22,11 +22,16 @@
     <string name="onboarding_subtitle_2">Cледите за своим ежедневным прогрессом и по окончании получайте сертификат.</string>
     <string name="onboarding_subtitle_3">Обучайтесь где угодно и следите за своим прогрессом на всех платформах.</string>
     <string name="hint_search">Чему бы вы хотели научиться?</string>
+    <string name="course_payment">Оплата курса</string>
+    <string name="month_payment">Месячный платеж</string>
+    <string name="month_payment_desc">Помесячный платеж\nСумма за 10 месяцев обучения 120 000 руб.</string>
+    <string name="go_to_payment">Перейти к оплате</string>
+    <string name="full_course">Полный курс</string>
+    <string name="full_course_payment_desc">Оплата сразу за 10 месяцев обучения\nВы экономите 20 000 руб</string>
     <string name="user_agreement">Нажимая продолжить вы принимаете условия %1$s и %2$s</string>
     <string name="user_agreement_action_one">“Пользовательского соглашения”</string>
     <string name="user_agreement_action_two">“Оферты”</string>
     <string name="continue_text">Продолжить</string>
     <string name="welcome">Добро пожаловать</string>
     <string name="example_text_for_test">Вас ждет бесплатный курс по основам HTML, CSS, JS. Из него вы поймете, чем занимается web-разработчик, и насколько вам подходит профессия web-разработчик.</string>
-
 </resources>
