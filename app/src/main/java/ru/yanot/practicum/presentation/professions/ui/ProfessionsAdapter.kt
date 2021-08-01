@@ -1,6 +1,7 @@
 package ru.yanot.practicum.presentation.professions.ui
 
 import android.annotation.SuppressLint
+import android.content.res.loader.ResourcesProvider
 import android.graphics.Rect
 import android.view.LayoutInflater
 import android.view.View
@@ -63,8 +64,8 @@ class ProfessionsAdapter : RecyclerView.Adapter<ProfessionsAdapter.ViewHolder>()
         }
 
         override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
-            if (parent.getChildAdapterPosition(view) == 0) outRect.top = 20.dp.toInt()
-            outRect.bottom = 12.dp.toInt()
+            if (parent.getChildAdapterPosition(view) == 0) outRect.top = view.context.resources.getDimension(R.dimen.offset_top_fist_profession_card).toInt()
+            outRect.bottom = view.context.resources.getDimension(R.dimen.offset_bottom_fist_profession_card).toInt()
         }
     }
 }
