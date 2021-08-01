@@ -25,6 +25,8 @@ class ProfessionsListFragment : Fragment(R.layout.professions_list_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupAdapter()
+
+        binding.appbar.addOnOffsetChangedListener(AppBarChangeListener(binding))
     }
 
     private fun setupAdapter() {
