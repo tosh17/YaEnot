@@ -3,22 +3,25 @@ package ru.yanot.practicum.presentation.onboarding.view
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 import ru.yanot.practicum.R
 import ru.yanot.practicum.databinding.OnboardingFragmentBinding
 import ru.yanot.practicum.presentation.onboarding.adapter.OnboardingAdapter
 import ru.yanot.practicum.presentation.onboarding.viewmodel.OnboardingViewModel
 import ru.yanot.practicum.utils.ZoomOutPageTransformer
 
+@AndroidEntryPoint
 class OnboardingFragment : Fragment(R.layout.onboarding_fragment) {
 
     private var isLastPage: Boolean = false
     private var isSwipeStarted: Boolean = false
 
-    private lateinit var viewModel: OnboardingViewModel
+    private val viewModel: OnboardingViewModel by viewModels()
 
     private val binding by viewBinding(OnboardingFragmentBinding::bind)
 
@@ -43,6 +46,11 @@ class OnboardingFragment : Fragment(R.layout.onboarding_fragment) {
         OnboardingAdapter(this@OnboardingFragment, drawableResources, title, subTitle)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if(viewModel.isOnboardingSeen()) findNavController().navigate(R.id.professionsListFragment)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -52,17 +60,19 @@ class OnboardingFragment : Fragment(R.layout.onboarding_fragment) {
 
     }
 
-    private fun initClickListener(){
+    private fun initClickListener() {
         binding.continueBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_onboardingFragment_to_professionsListFragment)
+            viewModel.setOnboadingSeen()
+            findNavController().navigate(R.id.action_onboardingFragment_to_authDialogFragment)
         }
 
         binding.selectCourseBtn.setOnClickListener {
-           findNavController().navigate(R.id.action_onboardingFragment_to_authDialogFragment)
+            viewModel.setOnboadingSeen()
+            findNavController().navigate(R.id.action_onboardingFragment_to_professionsListFragment)
         }
     }
 
-    private fun initViewPager(){
+    private fun initViewPager() {
         with(binding) {
             viewPager.adapter = onboardingAdapter
             TabLayoutMediator(tabLayout, viewPager) { _, _ -> }.attach()
@@ -99,8 +109,8 @@ class OnboardingFragment : Fragment(R.layout.onboarding_fragment) {
     }*/
 
     private fun finishOnboarding() {
-       //viewModel.setOnboadingSeen()
-        //findNavController().navigate(R.id.onboardingEdrugFragment)
+        viewModel.setOnboadingSeen()
+        findNavController().navigate(R.id.action_onboardingFragment_to_professionsListFragment)
     }
 
 }

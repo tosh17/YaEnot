@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
 
     <style name="Theme.MyApplication" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
@@ -15,6 +15,7 @@
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
         <item name="android:windowLightStatusBar">true</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <!--    Typography-->
@@ -120,6 +121,12 @@
         <item name="android:backgroundTint">@color/secondary_light</item>
         <item name="android:background">@drawable/btn_background_light</item>
         <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="WelcomeDialogTheme" parent="Theme.MyApplication">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowIsFloating">false</item>
     </style>
 
 </resources>
