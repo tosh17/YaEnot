@@ -16,6 +16,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.github.razir.progressbutton.hideProgress
 import com.github.razir.progressbutton.showProgress
 import dagger.hilt.android.AndroidEntryPoint
 import ru.yanot.practicum.R
@@ -23,7 +24,6 @@ import ru.yanot.practicum.databinding.DialogFragmentAuthBinding
 import ru.yanot.practicum.utils.getColor
 import ru.yanot.practicum.utils.getString
 import ru.yanot.practicum.utils.loadText
-
 
 @AndroidEntryPoint
 class AuthDialogFragment : DialogFragment() {
@@ -55,16 +55,34 @@ class AuthDialogFragment : DialogFragment() {
                 AuthState.EMPTY -> Unit
                 is AuthState.ERROR -> {
                     Log.e(javaClass.simpleName, it.exception.stackTraceToString())
+                    binding.logInBtn.hideProgress(R.string.log_in)
+                    setEnabledView(true)
+                }
+                AuthState.LOADING -> {
                     binding.logInBtn.showProgress {
-                        buttonTextRes = R.string.log_in
+                        progressColor = Color.WHITE
                     }
+                    setEnabledView(false)
                 }
-                AuthState.LOADING -> binding.logInBtn.showProgress {
-                    progressColor = Color.WHITE
+                AuthState.SUCCESS -> {
+                    findNavController().navigate(R.id.action_authDialogFragment_to_profileFragment)
+                    setEnabledView(true)
                 }
-
-                AuthState.SUCCESS -> findNavController().navigate(R.id.action_authDialogFragment_to_profileFragment)
             }
+        }
+    }
+
+    private fun setEnabledView(isEnabled: Boolean) {
+        with(binding) {
+            emailInputLayout.isEnabled = isEnabled
+            passwordInputLayout.isEnabled = isEnabled
+            logInBtn.isEnabled = isEnabled
+            forgetPasswordTextView.isEnabled = isEnabled
+            closeDialogBtn.isEnabled = isEnabled
+            googleIcon.isEnabled = isEnabled
+            facebookIcon.isEnabled = isEnabled
+            vkIcon.isEnabled = isEnabled
+            signInTextView.isEnabled = isEnabled
         }
     }
 
@@ -75,15 +93,12 @@ class AuthDialogFragment : DialogFragment() {
                     authViewModel.setAuthState(AuthState.LOADING)
                 }
             }
-
             closeDialogBtn.setOnClickListener {
                 dismiss()
             }
-
             forgetPasswordTextView.setOnClickListener {
                 Toast.makeText(context, "Click forget", Toast.LENGTH_LONG).show()
             }
-
             googleIcon.setOnClickListener {
                 Toast.makeText(context, "Google Auth", Toast.LENGTH_LONG).show()
             }
@@ -138,13 +153,6 @@ class AuthDialogFragment : DialogFragment() {
         return true
     }
 
-    /**
-     * 1) field must not be empty
-     * 2) password lenght must not be less than 6
-     * 3) password must contain at least one digit
-     * 4) password must contain atleast one upper and one lower case letter
-     * 5) password must contain atleast one special character.
-     */
     private fun validatePassword(): Boolean {
         with(binding) {
             if (passwordEditText.text.toString().trim().isEmpty()) {
