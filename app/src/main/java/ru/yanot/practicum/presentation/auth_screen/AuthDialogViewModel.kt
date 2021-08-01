@@ -16,7 +16,7 @@ class AuthDialogViewModel : BaseViewModel() {
         authStateLiveData.value = state
         viewModelScope.launch(Dispatchers.IO) {
             delay(2500)
-            authStateLiveData.postValue(AuthState.ERROR(IllegalStateException()))
+            authStateLiveData.postValue(AuthState.SUCCESS)
         }
     }
 }

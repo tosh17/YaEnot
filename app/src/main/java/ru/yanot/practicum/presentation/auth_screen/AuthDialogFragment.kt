@@ -16,8 +16,6 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.github.razir.progressbutton.hideProgress
-import com.github.razir.progressbutton.showProgress
 import dagger.hilt.android.AndroidEntryPoint
 import ru.yanot.practicum.R
 import ru.yanot.practicum.databinding.DialogFragmentAuthBinding
@@ -55,13 +53,10 @@ class AuthDialogFragment : DialogFragment() {
                 AuthState.EMPTY -> Unit
                 is AuthState.ERROR -> {
                     Log.e(javaClass.simpleName, it.exception.stackTraceToString())
-                    binding.logInBtn.hideProgress(R.string.log_in)
                     setEnabledView(true)
                 }
                 AuthState.LOADING -> {
-                    binding.logInBtn.showProgress {
-                        progressColor = Color.WHITE
-                    }
+                    Toast.makeText(context, "Loading...", Toast.LENGTH_SHORT).show()
                     setEnabledView(false)
                 }
                 AuthState.SUCCESS -> {
