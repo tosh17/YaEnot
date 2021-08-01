@@ -18,9 +18,6 @@ import ru.yanot.practicum.utils.ZoomOutPageTransformer
 @AndroidEntryPoint
 class OnboardingFragment : Fragment(R.layout.onboarding_fragment) {
 
-    private var isLastPage: Boolean = false
-    private var isSwipeStarted: Boolean = false
-
     private val viewModel: OnboardingViewModel by viewModels()
 
     private val binding by viewBinding(OnboardingFragmentBinding::bind)
@@ -48,7 +45,7 @@ class OnboardingFragment : Fragment(R.layout.onboarding_fragment) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if(viewModel.isOnboardingSeen()) findNavController().navigate(R.id.professionsListFragment)
+        if (viewModel.isOnboardingSeen()) findNavController().navigate(R.id.professionsListFragment)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -80,9 +77,10 @@ class OnboardingFragment : Fragment(R.layout.onboarding_fragment) {
             viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageScrollStateChanged(state: Int) {
                     when (state) {
-                        ViewPager2.SCROLL_STATE_DRAGGING -> isSwipeStarted = true
-                        ViewPager2.SCROLL_STATE_SETTLING -> isSwipeStarted = false
-                        ViewPager2.SCROLL_STATE_IDLE -> if (isSwipeStarted && isLastPage) {
+                        ViewPager2.SCROLL_STATE_DRAGGING -> viewModel.isSwipeStarted.value = true
+                        ViewPager2.SCROLL_STATE_SETTLING -> viewModel.isSwipeStarted.value = false
+                        ViewPager2.SCROLL_STATE_IDLE ->
+                            if (viewModel.isSwipeStarted.value && viewModel.isLastPage.value) {
                             finishOnboarding()
                         }
                     }
@@ -93,7 +91,7 @@ class OnboardingFragment : Fragment(R.layout.onboarding_fragment) {
                     positionOffset: Float,
                     positionOffsetPixels: Int
                 ) {
-                    isLastPage = position == onboardingAdapter.itemCount.minus(1)
+                    viewModel.isLastPage.value = position == onboardingAdapter.itemCount.minus(1)
                 }
             })
         }

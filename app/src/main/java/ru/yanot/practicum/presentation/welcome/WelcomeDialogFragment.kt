@@ -1,18 +1,19 @@
 package ru.yanot.practicum.presentation.welcome
 
+
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.DialogFragment
 import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.yanot.practicum.R
-import ru.yanot.practicum.databinding.WelcomeDealogFragmentBinding
+import ru.yanot.practicum.databinding.DialogWelcomeFragmentBinding
 import ru.yanot.practicum.utils.getColor
 import ru.yanot.practicum.utils.getString
 import ru.yanot.practicum.utils.loadText
 
-class WelcomeDialogFragment : DialogFragment(R.layout.welcome_dealog_fragment) {
+class WelcomeDialogFragment : DialogFragment(R.layout.dialog_welcome_fragment) {
 
-    private val binding: WelcomeDealogFragmentBinding by viewBinding(WelcomeDealogFragmentBinding::bind)
+    private val binding: DialogWelcomeFragmentBinding by viewBinding(DialogWelcomeFragmentBinding::bind)
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
