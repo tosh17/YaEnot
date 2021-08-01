@@ -7,6 +7,8 @@ import javax.inject.Inject
 
 interface SharedPreferenceManager{
     fun getToken(): String?
+    fun turnOnNotification(keyPreference: String, turnOn: Boolean)
+    fun isOnNotification(keyPreference: String): Boolean
     fun clearToken()
     fun isLogin(): Boolean
     fun isOnboadingSeen(): Boolean
@@ -21,6 +23,15 @@ class SharedPreferenceManagerImpl @Inject constructor(@ApplicationContext privat
 
     override fun getToken(): String? {
         return preferences.getString(PREFS_AUTH_TOKEN, null)
+    }
+
+    override fun turnOnNotification(keyPreference: String,turnOn: Boolean) {
+        preferences.edit().remove(keyPreference).apply()
+        preferences.edit().putBoolean(keyPreference, turnOn).apply()
+    }
+
+    override fun isOnNotification(keyPreference: String): Boolean {
+        return preferences.getBoolean(keyPreference, false)
     }
 
     override fun clearToken() {
