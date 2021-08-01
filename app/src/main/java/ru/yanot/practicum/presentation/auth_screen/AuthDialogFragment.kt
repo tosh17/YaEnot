@@ -6,23 +6,20 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.Toast
-import androidx.core.view.isEmpty
-import androidx.core.view.isNotEmpty
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.github.razir.progressbutton.showProgress
-import com.google.android.material.button.MaterialButton
 import dagger.hilt.android.AndroidEntryPoint
 import ru.yanot.practicum.R
 import ru.yanot.practicum.databinding.DialogFragmentAuthBinding
-import ru.yanot.practicum.presentation.onboarding.viewmodel.OnboardingViewModel
 import ru.yanot.practicum.utils.getColor
 import ru.yanot.practicum.utils.getString
 import ru.yanot.practicum.utils.loadText
@@ -74,12 +71,8 @@ class AuthDialogFragment : DialogFragment() {
     private fun setOnClickListeners() {
         with(binding) {
             logInBtn.setOnClickListener {
-                if (emailInputLayout.editText?.text.toString() != "" && passwordInputLayout.editText?.text.toString() != "") {
+                if (isValidate()) {
                     authViewModel.setAuthState(AuthState.LOADING)
-                } else if (emailInputLayout.editText?.text.toString() == "") {
-                    emailInputLayout.error = getString(R.string.not_empty_field)
-                } else if (passwordInputLayout.editText?.text.toString() == "") {
-                    passwordInputLayout.error = getString(R.string.not_empty_field)
                 }
             }
 
@@ -100,6 +93,8 @@ class AuthDialogFragment : DialogFragment() {
             vkIcon.setOnClickListener {
                 Toast.makeText(context, "Vk Auth", Toast.LENGTH_LONG).show()
             }
+            emailEditText.addTextChangedListener(TextFieldValidation(emailEditText))
+            passwordEditText.addTextChangedListener(TextFieldValidation(passwordEditText))
         }
     }
 
@@ -120,6 +115,65 @@ class AuthDialogFragment : DialogFragment() {
                     Toast.makeText(context, "Зарегистрироваться!", Toast.LENGTH_LONG).show()
                 }
             )
+        }
+    }
+
+    private fun isValidate(): Boolean =
+        validateEmail() && validatePassword()
+
+    private fun validateEmail(): Boolean {
+        with(binding) {
+            if (emailEditText.text.toString().trim().isEmpty()) {
+                emailInputLayout.error = "Required Field!"
+                emailEditText.requestFocus()
+                return false
+            } else if (!isValidEmail(emailEditText.text.toString())) {
+                emailInputLayout.error = "Invalid Email!"
+                emailEditText.requestFocus()
+                return false
+            } else {
+                emailInputLayout.isErrorEnabled = false
+            }
+        }
+        return true
+    }
+
+    /**
+     * 1) field must not be empty
+     * 2) password lenght must not be less than 6
+     * 3) password must contain at least one digit
+     * 4) password must contain atleast one upper and one lower case letter
+     * 5) password must contain atleast one special character.
+     */
+    private fun validatePassword(): Boolean {
+        with(binding) {
+            if (passwordEditText.text.toString().trim().isEmpty()) {
+                passwordInputLayout.error = "Required Field!"
+                passwordEditText.requestFocus()
+                return false
+            } else {
+                passwordInputLayout.isErrorEnabled = false
+            }
+        }
+        return true
+    }
+
+    private fun isValidEmail(email: String): Boolean {
+        return Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    }
+
+    inner class TextFieldValidation(private val view: View) : TextWatcher {
+        override fun afterTextChanged(s: Editable?) {}
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            when (view.id) {
+                R.id.email_edit_text -> {
+                    validateEmail()
+                }
+                R.id.password_edit_text -> {
+                    validatePassword()
+                }
+            }
         }
     }
 }

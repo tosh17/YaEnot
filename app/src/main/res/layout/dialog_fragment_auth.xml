@@ -61,10 +61,11 @@
             app:layout_constraintTop_toBottomOf="@+id/email_text_view">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/email_edit_text"
                 android:layout_width="match_parent"
-                android:inputType="textEmailAddress"
                 android:layout_height="wrap_content"
-                android:background="@drawable/background_image_shape_auth" />
+                android:background="@drawable/background_image_shape_auth"
+                android:inputType="textEmailAddress" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -96,6 +97,7 @@
             app:layout_constraintTop_toBottomOf="@+id/password_text_view">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/password_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/background_image_shape_auth"
