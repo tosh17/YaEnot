@@ -1,4 +1,4 @@
-package ru.yanot.practicum.presentation.professions
+package ru.yanot.practicum.presentation.professions.ui
 
 import com.google.android.material.appbar.AppBarLayout
 import ru.yanot.practicum.databinding.ProfessionsListFragmentBinding

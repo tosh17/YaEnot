@@ -1,4 +1,4 @@
-package ru.yanot.practicum.presentation.professions
+package ru.yanot.practicum.presentation.professions.ui
 
 import android.annotation.SuppressLint
 import android.graphics.Rect
@@ -11,6 +11,9 @@ import coil.load
 import coil.transform.RoundedCornersTransformation
 import ru.yanot.practicum.R
 import ru.yanot.practicum.databinding.ItemProfessionCardBinding
+import ru.yanot.practicum.utils.DiffCallbackImpl
+import ru.yanot.practicum.presentation.professions.model.Profession
+import ru.yanot.practicum.utils.dp
 
 class ProfessionsAdapter : RecyclerView.Adapter<ProfessionsAdapter.ViewHolder>() {
 

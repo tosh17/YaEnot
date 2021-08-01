@@ -1,4 +1,4 @@
-package ru.yanot.practicum.presentation.professions
+package ru.yanot.practicum.presentation.professions.ui
 
 import android.os.Bundle
 import android.view.View
@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import by.kirich1409.viewbindingdelegate.viewBinding
 import ru.yanot.practicum.R
 import ru.yanot.practicum.databinding.ProfessionsListFragmentBinding
+import ru.yanot.practicum.presentation.professions.viewmodel.ProfessionsViewModel
 
 class ProfessionsListFragment : Fragment(R.layout.professions_list_fragment) {
 

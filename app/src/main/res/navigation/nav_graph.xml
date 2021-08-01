@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/professionsListFragment"
-        android:name="ru.yanot.practicum.presentation.professions.ProfessionsListFragment"
+        android:name="ru.yanot.practicum.presentation.professions.ui.ProfessionsListFragment"
         android:label="professions_list_fragment"
         tools:layout="@layout/professions_list_fragment" />
     <dialog
