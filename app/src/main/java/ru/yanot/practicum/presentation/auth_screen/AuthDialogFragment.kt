@@ -14,9 +14,11 @@ import android.view.Window
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import ru.yanot.practicum.R
 import ru.yanot.practicum.databinding.DialogFragmentAuthBinding
 import ru.yanot.practicum.utils.getColor
@@ -47,21 +49,22 @@ class AuthDialogFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         highlightText()
         setOnClickListeners()
-
-        authViewModel.observeAuthState().observe(viewLifecycleOwner) {
-            when (it) {
-                AuthState.EMPTY -> Unit
-                is AuthState.ERROR -> {
-                    Log.e(javaClass.simpleName, it.exception.stackTraceToString())
-                    setEnabledView(true)
-                }
-                AuthState.LOADING -> {
-                    Toast.makeText(context, "Loading...", Toast.LENGTH_SHORT).show()
-                    setEnabledView(false)
-                }
-                AuthState.SUCCESS -> {
-                    findNavController().navigate(R.id.action_authDialogFragment_to_profileFragment)
-                    setEnabledView(true)
+        lifecycleScope.launchWhenStarted {
+            authViewModel.authStateLiveData.collect {
+                when (it) {
+                    AuthState.EMPTY -> Unit
+                    is AuthState.ERROR -> {
+                        Log.e(javaClass.simpleName, it.exception.stackTraceToString())
+                        setEnabledView(true)
+                    }
+                    AuthState.LOADING -> {
+                        Toast.makeText(context, "Loading...", Toast.LENGTH_SHORT).show()
+                        setEnabledView(false)
+                    }
+                    AuthState.SUCCESS -> {
+                        findNavController().navigate(R.id.action_authDialogFragment_to_profileFragment)
+                        setEnabledView(true)
+                    }
                 }
             }
         }
