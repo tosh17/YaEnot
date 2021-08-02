@@ -1,9 +1,8 @@
-package ru.yanot.practicum.presentation.profile
+package ru.yanot.practicum.presentation.profile.view
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -51,26 +50,24 @@ class ProfileMenuHolder(
 
 }
 
-sealed class ProfileMenuItem(val iconId: Int, val textId: Int, val hasArrow : Boolean = true) {
-    object Notification : ProfileMenuItem(
+enum class ProfileMenuItem(val iconId: Int, val textId: Int, val hasArrow : Boolean = true) {
+     Notification(
         R.drawable.ic_bell,
         R.string.prifile_menu_notification
-    )
-    object Questions : ProfileMenuItem(
+    ),
+     Questions(
         R.drawable.ic_menu_questions,
         R.string.prifile_menu_questions
-    )
-    object Support : ProfileMenuItem(
+    ),
+     Support(
         R.drawable.ic_menu_support,
         R.string.prifile_menu_support
-    )
-
-    object Payment : ProfileMenuItem(
+    ),
+    Payment (
         R.drawable.ic_menu_payment,
         R.string.prifile_menu_payment
-    )
-
-    object Exit : ProfileMenuItem(
+    ),
+    Exit(
         R.drawable.ic_menu_exit,
         R.string.prifile_menu_exit,
         false
