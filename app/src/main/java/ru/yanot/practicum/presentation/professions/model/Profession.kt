@@ -1,4 +1,4 @@
-package ru.yanot.practicum.presentation.professions
+package ru.yanot.practicum.presentation.professions.model
 
 data class Profession(
     val id: Long,
