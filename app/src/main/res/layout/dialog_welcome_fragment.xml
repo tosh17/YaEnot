@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageButton
+        android:id="@+id/close_btn"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@drawable/background_image_shape_auth"
+        android:src="@drawable/ic_cancel_icon"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="56dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/course_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        app:layout_constraintBottom_toTopOf="@id/title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/welcome"/>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/ystext_bold"
+        android:text="@string/welcome"
+        android:layout_marginBottom="24dp"
+        android:textColor="?android:attr/textColor"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@id/subtitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingEnd="27dp"
+        android:paddingStart="27dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="53dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/next_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/example_text_for_test" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/next_btn"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:gravity="center"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        style="@style/Button"
+        android:text="@string/continue_text"
+        android:textColor="@color/white"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/agreement_text_view"/>
+
+    <TextView
+        android:id="@+id/agreement_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginBottom="50dp"
+        android:layout_marginStart="31dp"
+        android:layout_marginEnd="31dp"
+        android:text="@{@string/user_agreement(@string/user_agreement_action_one,@string/user_agreement_action_two)}"
+        tools:text="Нажимая продолжить вы принимаете условия “Пользовательского соглашения” и “Оферты”"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
