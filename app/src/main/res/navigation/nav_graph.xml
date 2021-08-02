@@ -33,4 +33,8 @@
         android:id="@+id/profileFragment"
         android:name="ru.yanot.practicum.presentation.profile.ProfileFragment"
         android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/detailCourseFragment"
+        android:name="ru.yanot.practicum.presentation.detail_course.view.DetailCourseFragment"
+        android:label="DetailCourseFragment" />
 </navigation>
