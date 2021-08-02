@@ -10,10 +10,12 @@ class AppBarChangeListener(private val binding: ProfessionsListFragmentBinding) 
 
     override fun onOffsetChanged(appbar: AppBarLayout?, verticalOffset: Int) {
         appbar ?: return
-        binding.searchContainer.background.alpha =
-            (appbar.percentageOfHeight(verticalOffset) * 255).toInt()
+        binding.searchContainer.background.alpha = appbar.backgroundAlpha(verticalOffset)
     }
 
     private fun AppBarLayout.percentageOfHeight(offset: Int): Float =
         (1 - abs(offset).toFloat() / totalScrollRange)
+
+    private fun AppBarLayout.backgroundAlpha(offset: Int): Int =
+        (percentageOfHeight(offset) * 255).toInt()
 }
