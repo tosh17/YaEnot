@@ -1,6 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_graph">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/onboardingFragment">
 
+    <fragment
+        android:id="@+id/onboardingFragment"
+        android:name="ru.yanot.practicum.presentation.onboarding.view.OnboardingFragment"
+        android:label="OnboardingFragment" >
+        <action
+            android:id="@+id/action_onboardingFragment_to_professionsListFragment"
+            app:destination="@id/professionsListFragment" />
+        <action
+            android:id="@+id/action_onboardingFragment_to_authDialogFragment"
+            app:destination="@id/authDialogFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/professionsListFragment"
+        android:name="ru.yanot.practicum.presentation.professions.ui.ProfessionsListFragment"
+        android:label="professions_list_fragment"
+        tools:layout="@layout/professions_list_fragment" />
+    <dialog
+        android:id="@+id/authDialogFragment"
+        android:name="ru.yanot.practicum.presentation.auth_screen.AuthDialogFragment"
+        android:label="AuthDialogFragment" >
+        <action
+            android:id="@+id/action_authDialogFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </dialog>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="ru.yanot.practicum.presentation.profile.ProfileFragment"
+        android:label="ProfileFragment" />
+    <dialog
+        android:id="@+id/welcomeDialogFragment"
+        android:name="ru.yanot.practicum.presentation.welcome.WelcomeDialogFragment"
+        android:label="WelcomeDialogFragment" />
 </navigation>

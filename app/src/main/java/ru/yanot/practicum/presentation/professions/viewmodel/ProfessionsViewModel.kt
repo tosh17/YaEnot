@@ -1,6 +1,7 @@
-package ru.yanot.practicum.presentation.professions
+package ru.yanot.practicum.presentation.professions.viewmodel
 
 import androidx.lifecycle.ViewModel
+import ru.yanot.practicum.presentation.professions.model.Profession
 
 class ProfessionsViewModel : ViewModel() {
 
