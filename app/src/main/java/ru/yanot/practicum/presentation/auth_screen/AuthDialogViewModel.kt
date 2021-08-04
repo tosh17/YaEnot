@@ -1,7 +1,6 @@
 package ru.yanot.practicum.presentation.auth_screen
 
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -10,14 +9,14 @@ import kotlinx.coroutines.launch
 import ru.yanot.practicum.base.BaseViewModel
 
 class AuthDialogViewModel : BaseViewModel() {
-    private val _authStateLiveData = MutableStateFlow<AuthState>(AuthState.EMPTY)
-    val authStateLiveData: StateFlow<AuthState> = _authStateLiveData.asStateFlow()
+    private val _authStateflow = MutableStateFlow<AuthState>(AuthState.EMPTY)
+    val authStateflow: StateFlow<AuthState> = _authStateflow.asStateFlow()
 
     fun setAuthState(state: AuthState) {
-        _authStateLiveData.value = state
-        viewModelScope.launch(Dispatchers.IO) {
+        _authStateflow.value = state
+        viewModelScope.launch {
             delay(2500)
-            _authStateLiveData.value = AuthState.SUCCESS
+            _authStateflow.value = AuthState.SUCCESS
         }
     }
 }

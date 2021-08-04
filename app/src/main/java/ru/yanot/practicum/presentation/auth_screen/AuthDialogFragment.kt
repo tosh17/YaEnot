@@ -14,11 +14,16 @@ import android.view.Window
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 import ru.yanot.practicum.R
 import ru.yanot.practicum.databinding.DialogFragmentAuthBinding
 import ru.yanot.practicum.utils.getColor
@@ -49,23 +54,27 @@ class AuthDialogFragment : DialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         highlightText()
         setOnClickListeners()
-        lifecycleScope.launchWhenStarted {
-            authViewModel.authStateLiveData.collect {
-                when (it) {
-                    AuthState.EMPTY -> Unit
-                    is AuthState.ERROR -> {
-                        Log.e(javaClass.simpleName, it.exception.stackTraceToString())
-                        setEnabledView(true)
-                    }
-                    AuthState.LOADING -> {
-                        Toast.makeText(context, "Loading...", Toast.LENGTH_SHORT).show()
-                        setEnabledView(false)
-                    }
-                    AuthState.SUCCESS -> {
-                        findNavController().navigate(R.id.action_authDialogFragment_to_profileFragment)
-                        setEnabledView(true)
-                    }
-                }
+        lifecycleScope.launch {
+            authViewModel.authStateflow.flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
+                .onEach(::setAuth).launchIn(lifecycleScope)
+        }
+    }
+
+    private fun setAuth(state: AuthState) {
+        when (state) {
+            AuthState.EMPTY -> Unit
+            is AuthState.ERROR -> {
+                Log.e(javaClass.simpleName, state.exception.stackTraceToString())
+                Snackbar.make(binding.emailTextView, "Error auth!", Snackbar.LENGTH_SHORT).show()
+                setEnabledView(true)
+            }
+            AuthState.LOADING -> {
+                Toast.makeText(context, "Loading...", Toast.LENGTH_SHORT).show()
+                setEnabledView(false)
+            }
+            AuthState.SUCCESS -> {
+                findNavController().navigate(R.id.action_authDialogFragment_to_profileFragment)
+                setEnabledView(true)
             }
         }
     }
