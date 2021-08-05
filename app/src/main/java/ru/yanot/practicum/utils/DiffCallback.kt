@@ -1,8 +1,8 @@
-package ru.yanot.practicum.presentation.professions
+package ru.yanot.practicum.utils
 
 import androidx.recyclerview.widget.DiffUtil
 
-class DiffCallbackImpl(private val oldList: List<Profession>, private val newList: List<Profession>) :
+class DiffCallbackImpl<T>(private val oldList: List<T>, private val newList: List<T>) :
     DiffUtil.Callback() {
 
     override fun getOldListSize(): Int = oldList.size

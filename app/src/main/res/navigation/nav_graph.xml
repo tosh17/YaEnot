@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/professionsListFragment"
-        android:name="ru.yanot.practicum.presentation.professions.ProfessionsListFragment"
+        android:name="ru.yanot.practicum.presentation.professions.ui.ProfessionsListFragment"
         android:label="professions_list_fragment"
         tools:layout="@layout/professions_list_fragment" />
     <dialog
@@ -31,10 +31,14 @@
     </dialog>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="ru.yanot.practicum.presentation.profile.ProfileFragment"
+        android:name="ru.yanot.practicum.presentation.profile.view.ProfileFragment"
         android:label="ProfileFragment" />
     <dialog
         android:id="@+id/welcomeDialogFragment"
         android:name="ru.yanot.practicum.presentation.welcome.WelcomeDialogFragment"
         android:label="WelcomeDialogFragment" />
+    <fragment
+        android:id="@+id/detailCourseFragment"
+        android:name="ru.yanot.practicum.presentation.detail_course.view.DetailCourseFragment"
+        android:label="DetailCourseFragment" />
 </navigation>

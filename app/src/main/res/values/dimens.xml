@@ -5,4 +5,6 @@
     <dimen name="box_corner_radius_edit_text">8dp</dimen>
     <dimen name="corner_radius_icon_auth">8dp</dimen>
     <dimen name="margin_start_logo">50dp</dimen>
+    <dimen name="offset_top_fist_profession_card">20dp</dimen>
+    <dimen name="offset_bottom_fist_profession_card">12dp</dimen>
 </resources>
