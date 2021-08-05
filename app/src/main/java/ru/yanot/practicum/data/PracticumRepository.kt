@@ -7,6 +7,4 @@ class PracticumRepository @Inject constructor(
     private val remoteSource: PracticumService
 ) {
 
-
-
 }

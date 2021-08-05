@@ -1,4 +1,4 @@
-package ru.yanot.practicum.data.model
+package ru.yanot.practicum.data.model.api
 
 import com.google.gson.annotations.SerializedName
 
