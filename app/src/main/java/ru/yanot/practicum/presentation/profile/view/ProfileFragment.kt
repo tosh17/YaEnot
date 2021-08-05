@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -18,6 +19,7 @@ import kotlinx.coroutines.flow.onEach
 import ru.yanot.practicum.R
 import ru.yanot.practicum.databinding.ProfileFragmentBinding
 import ru.yanot.practicum.presentation.profile.viewmodel.ProfileViewModel
+import ru.yanot.practicum.utils.dp
 
 @AndroidEntryPoint
 class ProfileFragment : Fragment(R.layout.profile_fragment) {
@@ -43,16 +45,23 @@ class ProfileFragment : Fragment(R.layout.profile_fragment) {
     }
 
     private fun setAvatarUrl(url: String?) {
-        if (url == null) {
-            binding.body.imageAvatar.setImageResource(R.drawable.ic_user)
-        } else {
-            binding.body.imageAvatar.load(url) {
-                crossfade(true)
-                placeholder(R.drawable.ic_user)
-                transformations(CircleCropTransformation())
+        with(binding.body.imageAvatar){
+            if (url == null) {
+                setImageResource(R.drawable.ic_user)
+                background =  ContextCompat.getDrawable(requireContext(),R.drawable.shape_circle)
 
+            } else {
+                binding.body.imageAvatar.load(url) {
+                    crossfade(true)
+                    placeholder(R.drawable.ic_user)
+                    scaleType = ImageView.ScaleType.FIT_CENTER
+                    transformations(CircleCropTransformation())
+                    size(96.dp.toInt())
+                }
+                background =  null
             }
         }
+
     }
 
     private fun onClickMenuItem(menuItem: ProfileMenuItem) {

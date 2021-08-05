@@ -22,7 +22,7 @@ class ProfileViewModel @Inject constructor() : BaseViewModel() {
     init {
         _userName.value = "I'm Enot, you are not"
         viewModelScope.launch {
-            delay(2_000)
+            delay(6_000)
             _avatarUrl.value =
                 "https://proprikol.ru/wp-content/uploads/2019/09/prikolnye-foto-enotov-15.jpg"
         }
