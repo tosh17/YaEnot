@@ -1,17 +1,11 @@
 package ru.yanot.practicum.presentation.auth_screen
 
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import android.util.Patterns
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.view.Window
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -20,7 +14,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.google.android.material.snackbar.Snackbar
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -30,25 +23,11 @@ import ru.yanot.practicum.utils.getColor
 import ru.yanot.practicum.utils.getString
 import ru.yanot.practicum.utils.loadText
 
-@AndroidEntryPoint
-class AuthDialogFragment : DialogFragment() {
+class AuthDialogFragment : DialogFragment(R.layout.dialog_fragment_auth) {
 
     private val binding: DialogFragmentAuthBinding by viewBinding(DialogFragmentAuthBinding::bind)
 
     private val authViewModel: AuthDialogViewModel by viewModels()
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        val view: View = inflater.inflate(R.layout.dialog_fragment_auth, container, false)
-        with(dialog?.window) {
-            this?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            this?.requestFeature(Window.FEATURE_NO_TITLE)
-        }
-        return view
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -115,8 +94,14 @@ class AuthDialogFragment : DialogFragment() {
             vkIcon.setOnClickListener {
                 Toast.makeText(context, "Vk Auth", Toast.LENGTH_LONG).show()
             }
-            emailEditText.addTextChangedListener(TextFieldValidation(emailEditText))
-            passwordEditText.addTextChangedListener(TextFieldValidation(passwordEditText))
+
+            emailEditText.addTextChangedListener {
+                validateEmail()
+            }
+
+            passwordEditText.addTextChangedListener {
+                validatePassword()
+            }
         }
     }
 
@@ -177,18 +162,7 @@ class AuthDialogFragment : DialogFragment() {
         return Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 
-    inner class TextFieldValidation(private val view: View) : TextWatcher {
-        override fun afterTextChanged(s: Editable?) {}
-        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-            when (view.id) {
-                R.id.email_edit_text -> {
-                    validateEmail()
-                }
-                R.id.password_edit_text -> {
-                    validatePassword()
-                }
-            }
-        }
+    override fun getTheme(): Int {
+        return R.style.DialogThemeCorner
     }
 }
